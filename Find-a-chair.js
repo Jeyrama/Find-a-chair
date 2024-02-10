@@ -23,3 +23,6 @@ Example:
     If you need no chairs, return "Game On". 
     If there aren't enough spare chairs available, return "Not enough!".
 */
+
+
+// Solution
