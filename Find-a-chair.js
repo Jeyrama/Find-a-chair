@@ -42,3 +42,5 @@ function meeting(rooms, need) {
   }
   return 'Not enough!';
 }
+
+// or
