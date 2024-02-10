@@ -44,3 +44,43 @@ function meeting(rooms, need) {
 }
 
 // or
+
+function meeting(x, need){
+  
+  // IF WE DON'T NEED CHAIRS
+  // OR NEED IS NOT DEFINED, return ... 
+  
+  if (!need || need == 0) {return 'Game On'};
+  
+  // GET ARRAY WITH FREE CHAIRS PER ROOM
+  // Sometimes there are more ppl inside the room, than chairs, ... 
+  
+  let freeChairsInRooms = x
+    .map(r => { let i = r[1] - r[0].length; return i <= 0 ? 0 : i; })
+  
+  // SUM UP ALL AVAILABLE CHAIRS,
+  // AND CHECK IF EVEN ENOUGH, IF ELSE return ...
+  
+  if (freeChairsInRooms.reduce((a,b) => a+b,0) < need) { return 'Not enough!' } 
+  
+  // NOW START AT ROOM 1, TAKING OUT CHAIRS,
+  // BUT CHECK IF WE HAVE ENOUGH ALREADY,
+  // IF ENOUGH, STOP TAKING and return ... 
+  
+  let took = [];
+  for (let i = 0; i < freeChairsInRooms.length; i++) {
+    let chairs = freeChairsInRooms[i];
+    if (need != 0) {
+      if (need - chairs >= 0) { 
+        need -= chairs; took.push(chairs)
+      }
+      else { 
+        took.push(need); need -= need
+      }
+    } else { 
+      break; 
+    }
+  }
+    
+  return took;
+} 
